@@ -1,0 +1,11 @@
+{
+    "jim_g_trading_cards": {
+        "versions": {
+            "1.0.0": [
+                "Updated to new version checks.",
+                "Patched progressbars.",
+                "Patched db checks."
+            ]
+        }
+    }
+}
