@@ -1,12 +1,14 @@
 {
     "jim_g_trading_cards": {
         "versions": {
-            "1.1.0": [
-                "Updated to new version checks.",
-                "Patched progressbars.",
-                "Patched db checks."
+            "1.0.1": [
+                "Added blip support.",
+                "Fixed image mismatch issues.",
+                "Fixed install item list for QB-Core and OX Inventory.",
+                "Removed deprecated code from config."
             ]
         }
     }
 
 }
+
