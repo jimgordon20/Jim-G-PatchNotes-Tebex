@@ -1,7 +1,7 @@
 {
     "jim_g_trading_cards": {
         "versions": {
-            "1.0.3": [
+            "1.0.2": [
                 "Converted all card, booster pack, booster box, and accessory images from PNG to WEBP format.",
                 "Updated all image URLs in configs, card definitions, and client code to use .webp extensions.",
                 "Optimized assets image folder and configuration to reflect new image format.",
@@ -11,3 +11,4 @@
         }
     }
 }
+
