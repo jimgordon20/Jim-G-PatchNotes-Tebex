@@ -13,7 +13,8 @@
                 "Improved layout animation transitions for a smoother user experience.",
                 "Enhanced the visual quality and rendering of card displays.",
                 "Improved effect movement synchronization with card positioning.",
-                "Fixed incorrect bridge function logic to ensure proper integration."
+                "Fixed incorrect bridge function logic to ensure proper integration.",
+                "UPDATE ALL FILES - The config can be dragged and dropped, as no changes have been made to the config."
             ]
         }
     }
