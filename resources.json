@@ -7,8 +7,14 @@
                 "Optimized assets image folder and configuration to reflect new image format.",
                 "Reduced total local image size from 306MB to 25MB with no quality loss.",
                 "Updated entire script, including all configs and asset references, for full consistency."
+            ],
+            "1.0.3": [
+                "Fixed an issue where cards were not saving correctly within the binder.",
+                "Improved layout animation transitions for a smoother user experience.",
+                "Enhanced the visual quality and rendering of card displays.",
+                "Improved effect movement synchronization with card positioning.",
+                "Fixed incorrect bridge function logic to ensure proper integration."
             ]
         }
     }
 }
-
