@@ -15,6 +15,16 @@
                 "Improved effect movement synchronization with card positioning.",
                 "Fixed incorrect bridge function logic to ensure proper integration.",
                 "UPDATE ALL FILES - The config can be dragged and dropped, as no changes have been made to the config."
+            ],
+            "1.0.5": [
+                "Added a full Trading Card Shop NUI with categories, cart, and one-click checkout.",
+                "Added server-side basket checkout (grouped items, price calculation, inventory space checks, and auto-refund on add failure).",
+                "Added Trading Card Exchange / Kiosk (TC Machine) UI (Buy Packs + Sell Collection screens).",
+                "Added configurable TC Machine prop + locations (toggle via Config.TcMachine.enabled).",
+                "Improved client-side action rate limiting for shop basket checkout to reduce spam.",
+                "Improved shop purchase validation (rejects unavailable items and enforces cooldown checks per item).",
+                "Security: Added a hard server-side limit for basket size to prevent DoS (Config.Shop.maxBasketItems, default 30).",
+                "Added new item `empty_grading_case` this items is needed to get you card graded now make sore you add new item to you inventory.",
             ]
         }
     }
