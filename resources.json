@@ -24,7 +24,18 @@
                 "Improved client-side action rate limiting for shop basket checkout to reduce spam.",
                 "Improved shop purchase validation (rejects unavailable items and enforces cooldown checks per item).",
                 "Security: Added a hard server-side limit for basket size to prevent DoS (Config.Shop.maxBasketItems, default 30).",
-                "Added new item `empty_grading_case` this items is needed to get you card graded now make sore you add new item to you inventory.",
+                "Added new item `empty_grading_case` this items is needed to get you card graded now make sore you add new item to you inventory."
+            ],
+            "1.0.6": [
+                "Replaced all 'PSA' branding with 'CVG' (Card Value Grading) across the entire script, items, UI, and locales.",
+                "Updated Grading UI to use a rich metallic gold color (#D4AF37) for the grading score circle.",
+                "Fixed a critical issue where cards could not be removed from the binder after a server restart.",
+                "Improved binder data handling to automatically normalize card positions (fixing legacy data issues).",
+                "Updated all locale files, and specifically updated item descriptions for 'grading_case' and 'empty_grading_case' in installation lists (OX/QB) to replace 'PSA' with 'CVG'.",
+                "Redesigned Shop and Buy UIs for a more modern look and smoother user experience.",
+                "Enhanced Grading Shop UI with updated visuals and improved interaction flows.",
+                "Upgraded TC Machine interface for intuitive card exchange and pack purchasing.",
+                "UPDATE ALL FILES - Significant changes to UI files (HTML/CSS/JS) and Server logic."
             ]
         }
     }
