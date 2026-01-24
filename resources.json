@@ -36,6 +36,15 @@
                 "Enhanced Grading Shop UI with updated visuals and improved interaction flows.",
                 "Upgraded TC Machine interface for intuitive card exchange and pack purchasing.",
                 "UPDATE ALL FILES - Significant changes to UI files (HTML/CSS/JS) and Server logic."
+            ],
+            "1.0.7": [
+                "Split config into config.lua (core), configcards.lua (cards), and configshop.lua (shops/pricing); ensured fxmanifest loads in correct order.",
+                "Rebalanced Sell Shop base prices: large reductions for Uncommon, Rare, Epic, and Legendary across all brands.",
+                "Implemented pity-off booster pack rarity targeting: Epic ≈ 1/2000, Legendary ≈ 1/3000, Holo ≈ 1/4000, OriginalArt ≈ 1/5000.",
+                "Enabled OriginalArt as an independent rarity bucket on the server for selection and rules.",
+                "Updated global BoosterPacks cardsrarityRules to use direct weights for Epic/Legendary/Holo/OriginalArt (packGate disabled for these).",
+                "Kept Rare using packGate=true with chance=1% to preserve intended rare gating behavior.",
+                "Renamed non-card item names and image references to remove 'trading_cards_' prefix (cards unchanged)."
             ]
         }
     }
