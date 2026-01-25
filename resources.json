@@ -45,6 +45,16 @@
                 "Updated global BoosterPacks cardsrarityRules to use direct weights for Epic/Legendary/Holo/OriginalArt (packGate disabled for these).",
                 "Kept Rare using packGate=true with chance=1% to preserve intended rare gating behavior.",
                 "Renamed non-card item names and image references to remove 'trading_cards_' prefix (cards unchanged)."
+            ],
+            "1.0.8": [
+                "CRITICAL hotfix: Updated server.lua and client.lua ONLY.",
+                "No other files were changed in this update.",
+                "Fixed an issue where card metadata was not being applied correctly in certain cases.",
+                "Important for ESX + ox_inventory users: existing cards without metadata must be removed.",
+                "Cards missing metadata can be identified by the lack of a % condition when hovering over the item in inventory.",
+                "Cards without metadata may cause unexpected issues with the Trading Card Book.",
+                "Newly obtained cards after this update will correctly apply metadata.",
+                "Apologies for the inconvenience — applying this fix is required to prevent further issues."
             ]
         }
     }
