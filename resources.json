@@ -55,6 +55,15 @@
                 "Cards without metadata may cause unexpected issues with the Trading Card Book.",
                 "Newly obtained cards after this update will correctly apply metadata.",
                 "Apologies for the inconvenience — applying this fix is required to prevent further issues."
+            ],
+            "1.0.9": [
+                "Added `Config.BindersEnforceBrand` (default: true). When enabled, binders will only accept cards that match the binder's assigned brand.",
+                "Added `Config.BindersDuplicatesCheck` (default: true). Prevents adding duplicate cards (same name) to the binder.",
+                "Added `Config.BindersChecklistEnabled` (default: true). Displays a checklist of cards in the book on the last page [20].",
+                "Updated `Config.Binders` table to include a `brand` parameter for each binder, enabling brand-specific card restrictions.",
+                "Added Live Checklist Updates: The binder checklist now automatically updates in real-time when cards are added.",
+                "Fixed an issue where card animations (sway, reveal) were not playing for users with 'reduce motion' enabled in Windows settings.",
+                "General performance improvements and code optimizations."
             ]
         }
     }
