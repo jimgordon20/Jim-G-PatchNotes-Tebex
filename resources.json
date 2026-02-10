@@ -64,6 +64,18 @@
                 "Added Live Checklist Updates: The binder checklist now automatically updates in real-time when cards are added.",
                 "Fixed an issue where card animations (sway, reveal) were not playing for users with 'reduce motion' enabled in Windows settings.",
                 "General performance improvements and code optimizations."
+            ].
+            "1.1.0": [
+                "Fixed unclickable sell buttons on TC Machine UI by resolving CSS overlay issues (z-index conflicts).",
+                "Reorganized webhook configuration: merged separate 'Endpoints' and 'Colors' tables into a single 'DiscordHook' table for cleaner management.",
+                "Renamed webhook configuration table from 'Endpoints' to 'DiscordHook' across the entire script for consistency.",
+                "Added comprehensive Fivemanage logging integration alongside existing Discord webhooks.",
+                "Added configurable toggles in webhooks.lua: 'DiscordWebhooks', 'FivemanageWebhooks', and 'FivemanageDataset'.",
+                "Implemented automatic player identifier detection and metadata formatting for Fivemanage logs.",
+                "Added error handling for Fivemanage logging to prevent script crashes if the fmsdk resource is unavailable.",
+                "Enhanced webhook emission logic to support simultaneous logging to both Discord and Fivemanage, or either service independently.",
+                "Improved debug logging for webhook failures, including detailed error messages for troubleshooting.",
+                "All webhook payloads now include structured metadata for better log organization and filtering in external services."
             ]
         }
     }
