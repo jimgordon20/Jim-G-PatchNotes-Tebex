@@ -76,6 +76,14 @@
                 "Enhanced webhook emission logic to support simultaneous logging to both Discord and Fivemanage, or either service independently.",
                 "Improved debug logging for webhook failures, including detailed error messages for troubleshooting.",
                 "All webhook payloads now include structured metadata for better log organization and filtering in external services."
+            ],
+            "1.1.1": [
+                "Added `blipenabled` option to `Config.GradingShop`, `Config.Shop`, and `Config.SellShop` in `configshop.lua`.",
+                "This allows individual control over whether each shop's ped displays a map blip.",
+                "Updated client-side code to respect the new `blipenabled` flags.",
+                "General performance improvements and minor code optimizations."
+                "update `client/main.lua` = `configshop.lua` = `fxmanifest.lua`"
+                "No other files have been changed in this update"
             ]
         }
     }
