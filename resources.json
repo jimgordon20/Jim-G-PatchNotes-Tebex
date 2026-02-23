@@ -84,6 +84,13 @@
                 "General performance improvements and minor code optimizations."
                 "update `client/main.lua` = `configshop.lua` = `fxmanifest.lua`"
                 "No other files have been changed in this update"
+            ],
+            "1.1.2": [
+                "Configuration File Restructure: The main config.lua has been split into multiple files and moved to a new configs_settings folder. Move your existing configcards.lua and configshop.lua into this new folder. Replace all other files in configs_settings with the new versions.",
+                "Booster Pack Enhancements: Config.BoosterBoxes and Config.BoosterPacks have been moved to configs_settings/configbooster.lua. Each booster pack now supports individual rarityRules, allowing you to set different pull chances for each item in a pack.",
+                "Inventory & Item Changes: Added an inventory check to ensure players have enough space (6 slots) to open booster packs. A 2% condition removal feature has been added for items. Fixed a bug where cards would not correctly occupy inventory slots.",
+                "Added a **“show player”** button to preview your card or CVG to other players.",
+                "Performance: General performance improvements have been made."
             ]
         }
     }
