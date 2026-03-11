@@ -81,8 +81,8 @@
                 "Added `blipenabled` option to `Config.GradingShop`, `Config.Shop`, and `Config.SellShop` in `configshop.lua`.",
                 "This allows individual control over whether each shop's ped displays a map blip.",
                 "Updated client-side code to respect the new `blipenabled` flags.",
-                "General performance improvements and minor code optimizations."
-                "update `client/main.lua` = `configshop.lua` = `fxmanifest.lua`"
+                "General performance improvements and minor code optimizations.",
+                "update `client/main.lua` = `configshop.lua` = `fxmanifest.lua`",
                 "No other files have been changed in this update"
             ],
             "1.1.2": [
@@ -91,6 +91,36 @@
                 "Inventory & Item Changes: Added an inventory check to ensure players have enough space (6 slots) to open booster packs. A 2% condition removal feature has been added for items. Fixed a bug where cards would not correctly occupy inventory slots.",
                 "Added a **“show player”** button to preview your card or CVG to other players.",
                 "Performance: General performance improvements have been made."
+            ],
+            "1.1.3": [
+                "Added new card brand Ammunation Elite",
+                "Added new card brand Full Throttle",
+                "Added new card brand Ls Legends",
+                "Added new card brand Ls Landmark ",
+                "UI Visibility Rules: Stats now hide independently; descriptions remain if present; both hide when description is commented.",
+                "UI Consistency: Rarity badge is always shown, independent of stats visibility.",
+                "Bug Fixes: Resolved duplicate const redeclarations in Sell Shop and TC Machine UIs.",
+                "Inventory Install: Added Ammunation Elite & Full Throttle items to install list in correct order.",
+                "Config Tweaks: Updated pack thresholds/boosts and ensured effects toggles are respected.",
+                "Image Hosting: Switched for faster image loading, with local fallback (ui/i/).",
+                "UI Improvements: Added smooth fade-in/out transitions to Shop, Sell Shop, Grading Shop, and TC Machine menus.",
+                "Removed Effects: P_V and Trainer_Gallery_Holofoil effect types have been completely removed from the script.",
+                "Effect Overhaul: Significantly improved visual quality of Holofoil_Rare, Cosmos_Holofoil, Trainer_Gallery, Shiny_Vault, and Secret_Rare effects.",
+                "New Command: Added /jimgtrdingcardsshoweffect [effectName] to preview card effects in-game ONLY IF DEBUG true like the rest.",
+                "Performance Optimization: Implemented ImageCache system to prevent repeated file/config checks for shop images.",
+                "Menu Optimization: Drastically reduced lag when opening TC Machine and Sell Shop by optimizing inventory check.",
+                "Debug Safety: Added periodic (5min) console warnings (Client & Server) if Config.Debug is left enabled on a live server.",
+                "Booster Pack Fixes: Corrected effect mapping in Booster Packs so all card effects (Cosmos, Radiant, VMax, VStar, etc.) display properly.",
+                "Booster Animation: Added holographic shine animations to Booster Pack cards that sync with card movement and settle naturally over time.",
+                "Binder UI Polish: Improved card appearance in Binder - thicker borders (inwards) and better vertical alignment for rarity labels and card names.",
+                "Card UI 3D Overhaul: Added 3D depth to card elements. Card names now 'pop out' with a multi-layer drop shadow for a premium embossed look.",
+                "Rarity Badge Upgrade: Redesigned rarity badges with a 'Gemstone' style - inner highlights, shadows, and a subtle gradient to look like embedded jewels.",
+                "Stats Panel Redesign: Implemented a 'Holo-Glass' aesthetic for the stats area with frosted glass background, blur effects, and rounded 'capsule' stat boxes.",
+                "Card Frame Enhancement: Added a 'Double Stroke' border effect with inner metallic/white accents to give the card frame more physical detail.",
+                "Image Depth Effect: Applied a 'Layered Float' effect to card images, lifting them off the card body  and adding deep shadows to create a window/parallax illusion during rotation.",
+                "Binder Page Numbers: Added realistic 'Physical Page Corner' page numbers using serif fonts and italic styling, embedded into the top corners of the pages.",
+                "Binder Checklist Upgrade: Added a custom, slim, semi-transparent scrollbar to the checklist for better usability without breaking immersion.",
+                "Binder Card Scaling: Fixed and optimized the 'mini' card view in the binder. Stats and descriptions now scale down correctly (tiny fonts) to fit the grid without overflowing."
             ]
         }
     }
