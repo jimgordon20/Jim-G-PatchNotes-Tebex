@@ -81,15 +81,15 @@
                 "Added `blipenabled` option to `Config.GradingShop`, `Config.Shop`, and `Config.SellShop` in `configshop.lua`.",
                 "This allows individual control over whether each shop's ped displays a map blip.",
                 "Updated client-side code to respect the new `blipenabled` flags.",
-                "General performance improvements and minor code optimizations.",
-                "update `client/main.lua` = `configshop.lua` = `fxmanifest.lua`",
+                "General performance improvements and minor code optimizations."
+                "update `client/main.lua` = `configshop.lua` = `fxmanifest.lua`"
                 "No other files have been changed in this update"
             ],
             "1.1.2": [
-                "Configuration File Restructure: The main config.lua has been split into multiple files and moved to a new configs_settings folder. Move your existing configcards.lua and configshop.lua into this new folder. Replace all other files in configs_settings with the new versions.",
-                "Booster Pack Enhancements: Config.BoosterBoxes and Config.BoosterPacks have been moved to configs_settings/configbooster.lua. Each booster pack now supports individual rarityRules, allowing you to set different pull chances for each item in a pack.",
-                "Inventory & Item Changes: Added an inventory check to ensure players have enough space (6 slots) to open booster packs. A 2% condition removal feature has been added for items. Fixed a bug where cards would not correctly occupy inventory slots.",
-                "Added a **“show player”** button to preview your card or CVG to other players.",
+                "Configuration File Restructure: The main config.lua has been split into multiple files and moved to a new configs_settings folder. You must move your existing configcards.lua and configshop.lua into this new folder. All other files in the configs_settings folder must be replaced with the new versions.",
+                "Booster Pack Enhancements: Config.BoosterBoxes and Config.BoosterPacks have been moved to a new configs_settings/configbooster.lua file. Booster packs now support individual rarityRules, allowing for different odds per pack.",
+                "Inventory & Item Changes: An inventory check has been added to ensure players have enough space (6 slots) to open booster packs. The 2% condition removal from items has been implemented. A bug was fixed where cards would not correctly occupy an inventory slot.",
+                "New Features: A 'Sell Palsy' button has been added.",
                 "Performance: General performance improvements have been made."
             ],
             "1.1.3": [
@@ -121,7 +121,25 @@
                 "Binder Page Numbers: Added realistic 'Physical Page Corner' page numbers using serif fonts and italic styling, embedded into the top corners of the pages.",
                 "Binder Checklist Upgrade: Added a custom, slim, semi-transparent scrollbar to the checklist for better usability without breaking immersion.",
                 "Binder Card Scaling: Fixed and optimized the 'mini' card view in the binder. Stats and descriptions now scale down correctly (tiny fonts) to fit the grid without overflowing."
-            ]
+            ],
+            "1.1.4": [
+                "New Feature: Added Collector system. Collector rotates requested cards on a timer and supports Normal (condition threshold) and CVG (grade threshold) trade-ins with bonus payouts.",
+                "Collector Config: Added `configs_settings/configcollector.lua` with rarity filters and optional manual card lists for rotation selection.",
+                "Collector UI: Added a new Collector menu matching existing theme.",
+                "CVG Sell Shop: Added CVG category/tab in Sell Shop when player has graded slabs (grading_case).",
+                "CVG Visuals: CVG slabs now render using the same case/label/top overlays as grading UI, including date/serial/grade text and grade ring/number colors (red/silver/gold).",
+                "CVG Pricing: Added safer CVG pricing model to prevent easy profit from grading low-value cards; accounts for grading costs and caps profit unless high rarity/high grade.",
+                "Serial Numbers: Improved graded-case serial generation to avoid duplicates across restarts (persisted last serial + KVP registry).",
+                "Binder Data: Added optional `CardPositions` field to `configcards.lua` for binder/card placement support.",
+                "New Feature: Added CVG Binder (book-style UI) that stores graded slabs (grading_case) inside the binder metadata and allows add/remove by slot.",
+                "New Items: Added `cvg_binder` (CVG Binder) and renamed legacy `cvg_case` to `cvg_binder` with backward compatibility (old items still open the binder UI).",
+                "New Feature: Added `cvg_case_splitter` tool to break open a graded slab and return the contained card (slab destroyed).",
+                "Config: Added `Config.CVGCaseSplitter.consumeOnUse` toggle to optionally consume the splitter item on use.",
+                "Config: Added `Config.BrandURL` to change the brand URL shown across UIs (Shop/Sell/Grading).",
+                "Config: Added `Config.CVGBrandText` to rebrand the slab brand text and CVG slab category/tab names across UIs (visual-only branding).",
+                "TC Machine: Added graded slab selling support with its own category, correct slab rendering, and correct slot-based selling (fixes selling the wrong slab).",
+                "Updated Files: update All Files"
+            ],
         }
     }
 }
