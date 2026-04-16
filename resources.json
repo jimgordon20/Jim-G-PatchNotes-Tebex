@@ -140,6 +140,24 @@
                 "TC Machine: Added graded slab selling support with its own category, correct slab rendering, and correct slot-based selling (fixes selling the wrong slab).",
                 "Updated Files: update All Files"
             ],
+            "1.1.5": [
+                "New Feature: Added Card Sleeves system (`card_sleeves`) to protect cards from condition loss when showing/trading.",
+                "Config: Added `Config.Sleeves` with overlay image + full protect toggle + protection percent + return/destroy toggle.",
+                "Sleeves UI: Sleeves render as an overlay on card view and; supports click-to-open 'Remove Sleeve' menu and removes sleeve metadata safely.",
+                "Sell/Collector: Optional sleeve return when selling or collector hand-in for sleeved cards (based on config).",
+                "Fix: Grading Shop ped is now independent from TC Machine enable (TC Machine only disables Shop/SellShop peds).",
+                "Fix: fxmanifest updated to allow NUI images in `.png/.jpg/.jpeg` in addition to `.webp`.",
+                "New Feature: Added Custom CVG Label Skins system. Use label items to apply custom label artwork to existing graded slabs (grading_case).",
+                "Config: Added `Config.CVGLabelSkins` with per-label `labelImage` plus `textColor` + `outlineColor` for better readability on custom labels.",
+                "Shop: Added CVG Label items to the shop under `CVG labels` category for easy purchase/testing.",
+                "New Content: Added 15 new CVG label designs (cvg_label_aetheric_sigil, arcane_circle, astral_dragon, celestial_gear, cosmic_phoenix, elemental_fusion, glacial_inferno, golden_valley, katana_street, mecha_hangar, nebula_drift, nebula_fox, sage_alignment, solaris_runes, winter_shrine).",
+                "New Feature: Single card view now uses hover-follow movement and glides back to neutral when mouse leaves the card.",
+                "New Feature: Added custom `label` support for shop item entries so store/TC machine can show clean names like 'JG Warlords Pack' instead of item ids.",
+                "Shop Naming: Added labels across the full main shop list (packs, booster boxes, books, accessories, CVG labels) for cleaner UI naming.",
+                "System: Added item-name fallback prettify logic to improve display names when no explicit label is provided.",
+                "Various optimizations and improvements have been added.",
+                "Required update files: `ui` folder, `server/main.lua`, `client/main.lua`, `configs_settings/config.lua`, `configs_settings/configshop.lua`."
+            ],
         }
     }
 }
