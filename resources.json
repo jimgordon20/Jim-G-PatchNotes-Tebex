@@ -158,6 +158,23 @@
                 "Various optimizations and improvements have been added.",
                 "Required update files: `ui` folder, `server/main.lua`, `client/main.lua`, `configs_settings/config.lua`, `configs_settings/configshop.lua`."
             ],
+            "1.1.6": [
+                "Shop UI: Added a basket drawer on the Trading Card Shop — add items, review totals, and checkout from one panel (no separate header checkout button).",
+                "TC Machine UI: Added the same basket drawer on the Buy Packs screen with checkout inside the drawer.",
+                "Shop daily stock: Optional per-item `dailyStock` on `Config.Shop.items` with global restock timer (`dailyStockRestockHours`). Stock shown in shop and TC buy UI; server tracks shared limits.",
+                "Sell / CVG economy: Sell and slab payouts now use stable, deterministic pricing from card condition (UI preview matches what the server pays).",
+                "Sell / CVG economy: Rebalanced `Config.CVG.gradeMultipliers` and added `Config.SellShop.sellPricing` (condition min/max, minimum payout, slab cap vs ungraded).",
+                "Sell / CVG economy: Removed default time-based sell jitter (`Config.SellShop.dynamic`); add it back in config if you want hourly price swings.",
+                "TC Machine: Shop ped, sell ped, grading ped, and vending props are fully independent — each uses its own `enabled` flag in config.",
+                "TC Machine: Vending prop spawn improved (waits for `jim_g_trading_cards_props`, retries model load, respawns when nearby).",
+                "Config: Added interaction distances — `Config.TargetPedDistance`, `Config.TargetTcMachineDistance`, `Config.DrawTextPedDistance`.",
+                "Config: Added `Config.TcMachine.prompt` for drawtext mode when target is off.",
+                "Fix: TC Machine target no longer errors when opening the menu (`getCardData` load order).",
+                "Fix: Sell shop and TC sell list use server preview prices per inventory slot where applicable.",
+                "Backend: Global shop stock stored server-side basket buy/restock restores stock on failed adds.",
+                "Backend: Improved custom prop model loading for TC machines and related client stability.",
+                "Required update files: `ui` folder (all files), `client/main.lua`, `server/main.lua`, `configs_settings/config.lua`, `configs_settings/configshop.lua`."
+            ],
         }
     }
 }
