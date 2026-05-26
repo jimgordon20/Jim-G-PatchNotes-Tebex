@@ -173,7 +173,18 @@
                 "Fix: Sell shop and TC sell list use server preview prices per inventory slot where applicable.",
                 "Backend: Global shop stock stored server-side basket buy/restock restores stock on failed adds.",
                 "Backend: Improved custom prop model loading for TC machines and related client stability.",
-                "Required update files: `ui` folder (all files), `client/main.lua`, `server/main.lua`, `configs_settings/config.lua`, `configs_settings/configshop.lua`."
+                "Required update files: `ui` folder (all files), `client/main.lua`, `server/main.lua`, `configs_settings/config.lua`, `configs_settings/configshop.lua`.",
+            ],
+            "1.1.7": [
+                "New: Auto rarity — set `rarity = 'Auto'` on a card in configcards.lua to roll Normal/Uncommon/Rare/etc. per copy. Stored on `metadata.rarity`. Configure odds in `Config.AutoRarity.weights` (percentages should sum to 100).",
+                "New: Auto effect — set `effectType = 'Auto'` on cards that use `rarity = 'Auto'`. `Config.AutoRarity.effectRoll.chance` (%) can apply a random visual effect from `effectRoll.pool`; otherwise uses `default` (stored on `metadata.effectType`).",
+                "New: `Config.AutoRarity.packBucket` (default Normal) controls which booster pack slot can pull that card name. Rolled tier on the item is separate from pack slot rules.",
+                "New: `Config.AutoRarity.maxHighPerPack` (default 1) limits how many Rare+ Auto rolls can appear in one 6-card pack. Set to `false` to disable the cap.",
+                "Fix: Card sleeves `fullProtect = true` now blocks condition wear when using a card directly (not only when showing to another player).",
+                "Backend: Shared `conditionWearAmount()` for sleeve protection on all card-use wear paths.",
+                "Backend: Pack rewards pre-grant flow with locked pending metadata.",
+                "Note: Auto rarity/effect only run on cards explicitly set to `Auto` in configcards.lua. All other cards behave exactly as before.",
+                "Required update files: `fxmanifest.lua`, `server/main.lua`, `client/main.lua`, `configs_settings/config.lua`."
             ],
         }
     }
