@@ -64,7 +64,7 @@
                 "Added Live Checklist Updates: The binder checklist now automatically updates in real-time when cards are added.",
                 "Fixed an issue where card animations (sway, reveal) were not playing for users with 'reduce motion' enabled in Windows settings.",
                 "General performance improvements and code optimizations."
-            ].
+            ],
             "1.1.0": [
                 "Fixed unclickable sell buttons on TC Machine UI by resolving CSS overlay issues (z-index conflicts).",
                 "Reorganized webhook configuration: merged separate 'Endpoints' and 'Colors' tables into a single 'DiscordHook' table for cleaner management.",
@@ -185,6 +185,20 @@
                 "Backend: Pack rewards pre-grant flow with locked pending metadata.",
                 "Note: Auto rarity/effect only run on cards explicitly set to `Auto` in configcards.lua. All other cards behave exactly as before.",
                 "Required update files: `fxmanifest.lua`, `server/main.lua`, `client/main.lua`, `configs_settings/config.lua`."
+            ],
+            "1.1.8": [
+                "Fix: tgiann inventory — booster boxes no longer fail or grab the wrong item from slot  when opening quickly or in succession.",
+                "Fix: Booster pack removal now uses the correct inventory slot, reducing failed opens and wrong-item issues.",
+                "Fix: Card and graded slab inventory tooltips now show useful details (name, rarity, condition or CVG grade) instead of appearing blank on tgiann.",
+                "New: Sell Shop bulk sell — added Sell All Cards and Sell All CVG buttons with live total value before you confirm.",
+                "New: TC Machine sell screen now includes the same Sell All Cards and Sell All CVG bulk buttons as the Card Buyer shop.",
+                "Fix: Trading Card Shop opens instantly on inventory without the previous 1 second freeze before the UI appeared.",
+                "Shop: Daily stock still loads in the background after the shop opens; sold-out badges update as soon as stock data arrives.",
+                "Backend: Booster box opens are tracked per slot with a reward lock to prevent double claims and overlapping opens.",
+                "New: CVG single slab view now follows the mouse with smooth 3D tilt, matching single card view.",
+                "UI: Removed the top-right X close button on CVG slab view; click anywhere outside the case to close, same as the card viewer.",
+                "WARNING: You must also update the `jim_g_trading_cards_props` resource to the latest version — old props cause broken or missing TC Machine textures and vending machine models.",
+                "Required update files: entire `ui` folder, `client/main.lua`, `server/main.lua`, and replace `jim_g_trading_cards_props` (ensure it starts before jim_g_trading_cards in server.cfg)."
             ],
         }
     }
