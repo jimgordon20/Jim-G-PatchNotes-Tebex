@@ -200,6 +200,24 @@
                 "WARNING: You must also update the `jim_g_trading_cards_props` resource to the latest version — old props cause broken or missing TC Machine textures and vending machine models.",
                 "Required update files: entire `ui` folder, `client/main.lua`, `server/main.lua`, and replace `jim_g_trading_cards_props` (ensure it starts before jim_g_trading_cards in server.cfg)."
             ],
+            "1.1.9": [
+                "New: Deck Box system — use a deck item to view, add, and remove cards (up to 30 per box). Cards are stored on deck item metadata and keep full card metadata (condition, rarity, effects, sleeve state).",
+                "New: `Config.DeckBoxes` — 8 brand deck boxes (JG Warlords, Shin Genesis, Void Ether, Sands of Eternity, Ammunation Elite, Full Throttle, LS Legends, LS Landmark) with per-box image and brand.",
+                "New: `Config.DeckBoxesEnforceBrand` — when true, each deck only accepts cards matching that deck's brand.",
+                "New: `forcestatsonlycards` per deck box entry — when true, only battle-stat cards (Lv/HP/ATK/DEF) can be added; OriginalArt and no-stat cards are blocked in the add menu.",
+                "New: `Config.DeckBoxRules` — per-rarity composition limits for deck building (e.g. max Normal, max Legendary, etc.). Hard 30-card deck size is fixed in script and is not configurable. Missing rarity in rules = not allowed.",
+                "New: Optional per-deck rules override — add `rules = { ... }` on any `Config.DeckBoxes` entry to use custom rarity limits for that deck only.",
+                "New: Deck Box UI — deal-in animation when viewing, click a card to remove it back to inventory, undeal animation on close, holo effects on deck cards.",
+                "New: Deck boxes added to Trading Card Shop under the `Decks` category (`configshop.lua`).",
+                "New: Deck box items added to install lists — add the 8 `*_deck` items from `install/qb/qb_items.txt` or `install/ox/ox_items.txt` to your inventory.",
+                "Note: `forcestatsonlycards` and `Config.DeckBoxesEnforceBrand` are intended for use with the upcoming jim_g_trading_cards_game DLC/add-on.",
+                "Fix: Booster pack opens no longer grant all 6 cards the instant you use the pack — rewards are granted when the pack UI requests them after the tear animation, cutting server/inventory load when many players open packs at once.",
+                "Fix: Booster pack open cooldown on the server to stop pack-open spam.",
+                "Fix: Cannot open another booster pack while a previous pack still has unclaimed pending rewards.",
+                "Fix: Pending booster pack rewards are still granted if a player disconnects before closing the pack UI.",
+                "Fix: Booster pack UI close is locked until the card reveal animation has finished — click-outside and Escape no longer dismiss the pack too early during the reveal.",
+                "Required update files: entire `ui` folder, `client/main.lua`, `server/main.lua`, `configs_settings/config.lua`, `configs_settings/configshop.lua`."
+            ],
         }
     }
 }
