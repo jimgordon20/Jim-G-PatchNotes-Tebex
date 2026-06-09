@@ -218,6 +218,15 @@
                 "Fix: Booster pack UI close is locked until the card reveal animation has finished — click-outside and Escape no longer dismiss the pack too early during the reveal.",
                 "Required update files: entire `ui` folder, `client/main.lua`, `server/main.lua`, `configs_settings/config.lua`, `configs_settings/configshop.lua`."
             ],
+            "1.2.0": [
+                "New: SQL storage for binder and deck box collections — card data is stored in MySQL (`jg_tc_container_cards`) instead of bloated item metadata JSON.",
+                "New: Binder and deck box SQL storage is always on — legacy `metadata.cards` auto-migrates on first open; empty containers remove their DB rows.",
+                "New: Slim item metadata — binders keep `binderId` + `currentSpread` + `cardCount`; deck boxes keep `deckId` + `cardCount`. Container IDs travel with the item on drop/trade.",
+                "New: `server/storage.lua` auto-creates the SQL table on resource start — first start logs \"SQL injected\", later restarts log \"Database detected\". Requires `oxmysql` (added as a dependency).",
+                "Note: Existing binders/deck boxes with cards in metadata migrate automatically the first time they are opened after updating.",
+                "Note: If oxmysql is missing, binders/deck boxes fall back to item metadata and the console shows a warning.",
+                "Required update files: `fxmanifest.lua`, `server/main.lua`, `server/storage.lua`, `client/main.lua`."
+            ],
         }
     }
 }
