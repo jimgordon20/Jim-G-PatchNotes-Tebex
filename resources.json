@@ -227,6 +227,23 @@
                 "Note: If oxmysql is missing, binders/deck boxes fall back to item metadata and the console shows a warning.",
                 "Required update files: `fxmanifest.lua`, `server/main.lua`, `server/storage.lua`, `client/main.lua`."
             ],
+            "1.2.5": [
+                "BREAKING — Collector removed: the built-in Collector NPC/UI/config is no longer inside jim_g_trading_cards. Collector is now the optional separate resource `jim_g_collector`.",
+                "Optional addon: install and start `jim_g_collector` after jim_g_trading_cards to restore collector trade-ins. Trading cards auto-detects it and logs `[jim_g_trading_cards] Detected jim_g_collector` when linked (silent if collector is not installed).",
+                "New: TC Machine DUI mode — set `Config.TcMachine.dui = true` to show the shop UI on the vending machine glass with immersive camera / native mouse. Set `dui = false` for the previous on-screen NUI.",
+                "New: `Config.TcMachine.dui_theme` (`light` / `dark`) and idle attract text via `Config.TcMachine.attract` for the glass screen.",
+                "New: Per-machine DUI occupancy lock — only one player can use a given TC machine prop at a time; other machines stay free. Busy machines notify: \"This machine is in use and will be available shortly\". Lock applies only when DUI is enabled (not ped shops / non-DUI mode).",
+                "New: `Config.DeckBoxPlayTypeRules` — max spell/trap per deck counted from card `playType` (default 3 each).",
+                "Locales: full UI/notify chrome wired to locale JSON keys (`ui/j/locale.js`, data-i18n). All locale files synced to the English key set.",
+                "Fix: Deck boxes with `forcestatsonlycards` now accept spell/trap cards (playType) in addition to battle-stat monster cards.",
+                "Fix: Card holo/shine now glides with the card tilt (including when the mouse leaves) instead of freezing on the last cursor position.",
+                "Fix: Radiant_Holofoil intensity toned down; removed the visible 4-corner tile seam on the foil pattern.",
+                "Change: Spell/trap cards use normal rarity (Uncommon, Rare, Holo) for pack pulls — not a separate Spell/Trap rarity.",
+                "Change: Debug test commands remain gated behind `Config.Debug`.",
+                "Note: Shop / Sell / Grading peds are unchanged and independent of TC Machine DUI locks.",
+                "WARNING: Keep `jim_g_trading_cards_props` updated and started before this resource for the vending machine / pack props.",
+                "Required update files: `fxmanifest.lua`, entire `ui` folder, entire `locales` folder, `client/main.lua`, `client/tc_machine_dui.lua`, `server/main.lua`, `server/storage.lua`, `configs_settings/config.lua`, `configs_settings/configshop.lua`, `configs_settings/configcards.lua`, `configs_settings/configbooster.lua`. Remove old `configs_settings/configcollector.lua` if present. Optional: install `jim_g_collector` separately."
+            ],
         }
     }
 }
