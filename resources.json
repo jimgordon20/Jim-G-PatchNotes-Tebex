@@ -244,6 +244,15 @@
                 "WARNING: Keep `jim_g_trading_cards_props` updated and started before this resource for the vending machine / pack props.",
                 "Required update files: `fxmanifest.lua`, entire `ui` folder, entire `locales` folder, `client/main.lua`, `client/tc_machine_dui.lua`, `server/main.lua`, `server/storage.lua`, `configs_settings/config.lua`, `configs_settings/configshop.lua`, `configs_settings/configcards.lua`, `configs_settings/configbooster.lua`. Remove old `configs_settings/configcollector.lua` if present. Optional: install `jim_g_collector` separately."
             ],
+            "1.2.6": [
+                "New: Pack flip reveal — with `Config.NewPackOpenAnimation = true`, booster packs still tear/open as before, but cards come out face-down on their brand card back, then flip one-by-one left → right to show the front.",
+                "New: `Config.NewPackOpenAnimation` — set `false` to keep the classic face-up pack reveal (same as before this update).",
+                "New: `Config.CardBacks` — list of `{ brand = '...', backimage = '....webp' }` entries (images in `ui/i`). Used for pack flip reveal and single-card flip. Add more brands by copying a line. Use `{ brand = 'default', backimage = '...' }` as the fallback.",
+                "New: Single card view — open a card from inventory and click it to turn the whole card over to the brand back; click again for the front. Hover / tilt still works as normal; click outside still closes.",
+                "New: `Config.SoundVolume` (0.0–1.0) — master volume for all NUI sound effects (pack open, card reveal, binder, etc.).",
+                "Note: Brands without a `Config.CardBacks` entry use the `brand = 'default'` entry until you add a matching back image line.",
+                "Required update files: `fxmanifest.lua`, `configs_settings/config.lua`, `client/main.lua`, and the entire `ui` folder."
+            ]
         }
     }
 }
