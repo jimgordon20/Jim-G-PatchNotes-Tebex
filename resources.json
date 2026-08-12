@@ -252,6 +252,15 @@
                 "New: `Config.SoundVolume` (0.0–1.0) — master volume for all NUI sound effects (pack open, card reveal, binder, etc.).",
                 "Note: Brands without a `Config.CardBacks` entry use the `brand = 'default'` entry until you add a matching back image line.",
                 "Required update files: `fxmanifest.lua`, `configs_settings/config.lua`, `client/main.lua`, and the entire `ui` folder."
+            ],
+            "1.2.7": [
+                "Fix: When a card is used/sanitized, inventory `metadata.stats` are overwritten from `Config.Cards` so rebalances apply to owned cards.",
+                "Change: `configcards.lua` — JG game brands (`jg_warlords`, `jg_shin_genesis`, `jg_void_ether`, `jg_sands_of_eternity`) monster stats (HP/ATK/DEF) fully rebalanced for battle flow. Each rarity now cycles offense / balanced / wall roles. Same-rarity offense ATK is tuned to meet or beat same-rarity balanced HP and wall DEF so guard walls do not lock the board (`too strong to attack`). Levels unchanged.",
+                "Change: Brand feel on those stats — Warlords baseline, Shin slightly sharper ATK, Void glassier, Sands tankier. Void Ether Uncommons that were accidentally Rare-tier power are corrected to Uncommon values.",
+                "Change: Per JG game brand — 6 Uncommon + 6 Rare cards converted to spell/trap (`playType` + `playEffectId`, no `stats`). Uncommon maps to spell/trap effects 1–3; Rare to 4–6. Pair with `jim_g_trading_cards_game` `config_spell_trap.lua`.",
+                "Note: Owned cards pick up the new stats/spell-trap defs after use/sanitize.",
+                "Fix: Opening a deck box quietly syncs card `metadata.stats` from `Config.Cards` only when they differ.",
+                "Required update files: `fxmanifest.lua`, `server/main.lua`, `client/main.lua`, `configs_settings/configcards.lua`."
             ]
         }
     }
