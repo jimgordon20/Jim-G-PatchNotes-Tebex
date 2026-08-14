@@ -81,8 +81,8 @@
                 "Added `blipenabled` option to `Config.GradingShop`, `Config.Shop`, and `Config.SellShop` in `configshop.lua`.",
                 "This allows individual control over whether each shop's ped displays a map blip.",
                 "Updated client-side code to respect the new `blipenabled` flags.",
-                "General performance improvements and minor code optimizations."
-                "update `client/main.lua` = `configshop.lua` = `fxmanifest.lua`"
+                "General performance improvements and minor code optimizations.",
+                "update `client/main.lua` = `configshop.lua` = `fxmanifest.lua`",
                 "No other files have been changed in this update"
             ],
             "1.1.2": [
@@ -261,6 +261,26 @@
                 "Note: Owned cards pick up the new stats/spell-trap defs after use/sanitize.",
                 "Fix: Opening a deck box quietly syncs card `metadata.stats` from `Config.Cards` only when they differ.",
                 "Required update files: `fxmanifest.lua`, `server/main.lua`, `client/main.lua`, `configs_settings/configcards.lua`."
+            ]
+        }
+    },
+    "jim_g_trading_cards_game": {
+        "versions": {
+            "0.1.2": [
+                "Expanded spell and trap effects — new spells (Fracture, Shatter, Cascade, Fortify, Wither, Vitalize, Emberbolt) and traps (Retaliate, Ambush, Bulwark, Siphon, Hexbolt) in `config_spell_trap.lua`, ready to pair with game-brand spell/trap cards.",
+                "Spell and trap face (up/down) is set by the card (`activateFaceUp`) — players no longer pick face when setting a spell or trap.",
+                "Traps must be armed before they can fire, so they are clearer and less confusing mid-match.",
+                "New trap option `armAtEndTurn`: true = short Activate window after End Turn (opponent/AI timer paused); false = highlight in your Attack phase and click to arm. Skip the window and the turn continues with the trap unarmed. AI arms automatically.",
+                "Activate prompt sits above the trap card/slot so artwork stays visible.",
+                "Forfeit is no longer a permanent top-right button — a small tab under your HP opens Forfeit when needed.",
+                "Added an Are you sure? forfeit prompt (Yes / No). Only you see it; the match does not freeze for the other player.",
+                "Improved table board layout — playmat and End Turn / status text sit cleaner on the wood so text is not stuck on the board border.",
+                "Smoother combat feedback — attack HP flash and hit timing feel tighter and more in sync with the strike.",
+                "Improved battle animations and UI timing for a cleaner, more responsive match feel.",
+                "Optional `HudControl` in config — paste your HUD hide/show exports so the external HUD can hide during matches and return when you leave the board.",
+                "Table presence board scaling improved so the mat fits more consistently across resolutions.",
+                "All locale files updated for forfeit confirm, trap Activate, and related UI text.",
+                "Required update files: entire `ui` folder, entire `locales` folder, entire `server/main` folder, entire `client/main` folder, `fxmanifest.lua`, `configs_settings/config.lua`, `configs_settings/config_spell_trap.lua`."
             ]
         }
     }
