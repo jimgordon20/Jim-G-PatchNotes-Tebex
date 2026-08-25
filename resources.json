@@ -327,7 +327,7 @@
     },
     "jim_g_collector": {
         "versions": {
-            "1.0.1": [
+            "1.0.2": [
                 "Replaced community_bridge with Newb_Bridge for framework, inventory, target, text UI, and notifications.",
                 "Removed all community_bridge exports, dependencies.",
                 "Updated notify calls to Newb format { description, type, duration }.",
