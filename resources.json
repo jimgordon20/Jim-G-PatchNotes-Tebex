@@ -173,7 +173,7 @@
                 "Fix: Sell shop and TC sell list use server preview prices per inventory slot where applicable.",
                 "Backend: Global shop stock stored server-side basket buy/restock restores stock on failed adds.",
                 "Backend: Improved custom prop model loading for TC machines and related client stability.",
-                "Required update files: `ui` folder (all files), `client/main.lua`, `server/main.lua`, `configs_settings/config.lua`, `configs_settings/configshop.lua`.",
+                "Required update files: `ui` folder (all files), `client/main.lua`, `server/main.lua`, `configs_settings/config.lua`, `configs_settings/configshop.lua`."
             ],
             "1.1.7": [
                 "New: Auto rarity — set `rarity = 'Auto'` on a card in configcards.lua to roll Normal/Uncommon/Rare/etc. per copy. Stored on `metadata.rarity`. Configure odds in `Config.AutoRarity.weights` (percentages should sum to 100).",
@@ -261,6 +261,34 @@
                 "Note: Owned cards pick up the new stats/spell-trap defs after use/sanitize.",
                 "Fix: Opening a deck box quietly syncs card `metadata.stats` from `Config.Cards` only when they differ.",
                 "Required update files: `fxmanifest.lua`, `server/main.lua`, `client/main.lua`, `configs_settings/configcards.lua`."
+            ],
+            "1.2.8": [
+                "Fix: Cloudflare card images missing after a full server restart / cold join — client now retries image-config fetch until received (waits for session start), and briefly ensures config is loaded before opening a card or pack.",
+                "Note: Restarting the resource in-game is no longer needed for Cloudflare images to appear after joining.",
+                "Required update files: `fxmanifest.lua`, `client/main.lua`."
+            ],
+            "1.2.9": [
+                "Change: community_bridge wiring removed. The resource now depends on `Newb_Bridge` only (`@Newb_Bridge/import.lua` + global `bridge`).",
+                "Change: Inventory / framework / notify / menu / target / text UI calls use Newb_Bridge APIs directly (ox-order add/remove, `setMetadata(src, slot, meta)`, `registerItemUse`, `addMoney` / `removeMoney`).",
+                "Fix: Inventory reads now follow Newb's ox slot shape (`metadata` / `count` / numeric `slot`) so one_inventory `info`/`amount` still works for menus, sell, show-player, binders, and slot lookups.",
+                "Fix: Nearby-player list coerces QB player ids to numbers. Target cleanup now passes the option names Newb/ox_target expect.",
+                "Fix: TC machine target reads Newb/ox `onSelect` data.entity. Slot lookups/metadata writes coerce slot to a number. Inventory scans use pairs so sparse/hash bags are not skipped.",
+                "Fix: Grading / sleeve / CVG label menus capture the slot in `onSelect` (do not depend on menu `args`, which qb-menu does not pass). Nearby-player list ignores invalid ped 0.",
+                "Note: Start `ox_lib` then `Newb_Bridge` before this resource. No community_bridge fallback.",
+                "Note: `Config.Debug = true` logs Newb API readiness, notify calls, inventory shape mismatches, slot misses, pack/shop inventory/money failures, and target setup. Turn it off before a live server.",
+                "Fix: Booster pack UI can no longer be closed with ESC or by clicking around the pack image before the pack is torn and the cards are revealed. Closing too early was eating the pack, not returning it, and blocking the next pack with 'Finish opening your current pack first'.",
+                "Fix: Grading ped wait UI no longer lets you hover-tilt the card, then freeze it at an odd angle. The card opens locked/flat until grading finishes.",
+                "New: Graded `grading_case` inventory name is set from `Config.CVGBrandText` + card name + grade (example: `cvg Aetherion grade 8`). Item spawn name stays `grading_case`.",
+                "New: Existing slabs get that inventory label on first use, or when a CVG binder that holds them is opened. Only `metadata.label` is added/cleaned — grade, serial, date, and contained card are never rewritten.",
+                "New: Changing `Config.CVGBrandText` (e.g. `cvg` to `jim`) updates slab inventory names on next use / CVG binder open.",
+                "New: Deck box — Rename Deck added to the existing Newb_Bridge use menu (View Cards / Add Cards / Rename Deck). Writes `metadata.label` so the inventory title changes.",
+                "New: Binder — using a binder now opens a Newb_Bridge menu first (Open Binder / Rename Binder) instead of jumping straight into the book UI. Rename writes `metadata.label`.",
+                "New: CVG Binder — using a CVG binder now opens a Newb_Bridge menu first (Open CVG Binder / Rename CVG Binder). Rename writes `metadata.label`. Opening also sanitizes slab inventory labels inside the binder.",
+                "Change: Collector + trader provider for `jim_g_collector` moved to `server/main2.lua` so `server/main.lua` stays under Lua's 200 local-variable limit.",
+                "Remove: Debug inventory image generator (`testjimgcardscreenshot`, html2canvas capture, `ui/inv_images` save, screenshot webhook). Inventory icons now come from the website. Cloudflare / `ResolveImage` and the `ui/inv_images` folder stay.",
+                "Note: Rename is 1=32 characters. Graded `grading_case` slabs cannot be player-renamed; their inventory name stays auto from `Config.CVGBrandText` + card name + grade.",
+                "Fix: Inventories that honour `metadata.label` as the item title (ox-style) still show the renamed binder/deck/CVG name there. Inventories that keep the item-definition title (one_inventory) now show that custom name at the top of the hover tooltip (`Name`).",
+                "Required update files: `fxmanifest.lua`, `client/main.lua`, `server/main.lua`, `server/main2.lua`, `server/webhooks.lua`, `ui/h/index.html`, `ui/j/main.js`, `ui/c/base.css`, `ui/c/cards.css`, `ui/j/booster.js`, `ui/j/cards.js`, `locales/English.json`."
             ]
         }
     },
@@ -281,6 +309,93 @@
                 "Table presence board scaling improved so the mat fits more consistently across resolutions.",
                 "All locale files updated for forfeit confirm, trap Activate, and related UI text.",
                 "Required update files: entire `ui` folder, entire `locales` folder, entire `server/main` folder, entire `client/main` folder, `fxmanifest.lua`, `configs_settings/config.lua`, `configs_settings/config_spell_trap.lua`."
+            ],
+            "1.0.1": [
+                "Change: community_bridge is removed. This DLC now uses Newb_Bridge only. Do not keep community_bridge as a dependency for this resource.",
+                "Note: Start `ox_lib`, then `Newb_Bridge`, then `jim_g_trading_cards`, then this resource. There is no community_bridge fallback.",
+                "Note: Update Jim G Trading Cards to the Newb_Bridge version as well — this DLC reads cards, deck boxes, and brands from that resource.",
+                "Change: Inventory, notify, target, permissions, and money all go through Newb_Bridge.",
+                "New: Staff tournament setup — command is `EventConfig.PlacementCommand` (default `/maketcgtournament`). Place the sign-up ped, official tables, and signs. Gate it with `RequirePermissionToPlaceProps` in `config_events.lua` / `server_permission.lua`.",
+                "Change: Prop and ped placement uses Newb_Bridge's built-in PropPlacer. The staff menu hides while you place; Newb's key panel shows (E to place, Backspace to exit, scroll to rotate). The staff menu comes back when you finish or cancel.",
+                "Fix: Custom tables and signs now sit on the ground when placed (peds were already correct). Re-place any props that were already floating.",
+                "New: Choose-deck / wager UI shows a renamed deck box name (`metadata.label` from jim_g_trading_cards) instead of the item definition title. Brand checks still use the deck box item. Unnamed boxes still show the item label.",
+                "New: Optional play mats as inventory items — set `PlayMatsAsItem = true` in `configplaymats.lua`. The player starting the match (AI or PvP) only sees mats they own. Item name is theme id + `_mats` (example: `red_blue_fusion_mats`). Labels stay the same in the game UI. Opponent does not need the item. Leave false to keep every mat in the picker.",
+                "Note: Copy-ready play mat items are in `install/example_ox_item.txt` and `install/example_qb_item.txt`. The game does not take the item away when you pick a mat.",
+                "Required update files: `fxmanifest.lua`, entire `client/main` folder, entire `server/main` folder, entire `ui` folder, entire `locales` folder, entire `shared` folder, `configs_settings/configplaymats.lua`, `install/example_ox_item.txt`, `install/example_qb_item.txt`."
+            ]
+        }
+    },
+    "jim_g_collector": {
+        "versions": {
+            "1.0.1": [
+                "Replaced community_bridge with Newb_Bridge for framework, inventory, target, text UI, and notifications.",
+                "Removed all community_bridge exports, dependencies.",
+                "Updated notify calls to Newb format { description, type, duration }.",
+                "Updated inventory addItem to ox/Newb argument order (src, item, amount, metadata).",
+                "Updated target and text UI to bridge.target / bridge.textui.",
+                "Required files: fxmanifest.lua, client/main/main.lua, server/main/main.lua, server/main/trader.lua, server/main/meta.lua.",
+                "Configs, UI, locales, and webhooks were not changed.",
+                "Start order: ox_lib → Newb_Bridge → jim_g_trading_cards → jim_g_collector."
+            ]
+        }
+    },
+    "jtc_17mov_phone_app": {
+        "versions": {
+            "1.0.1": [ 
+                "Replaced community_bridge with Newb_Bridge for player identifier and character name lookup.", 
+                "Removed all community_bridge exports, dependencies, and server.cfg ensure lines.", 
+                "Required files: fxmanifest.lua, server/player.lua.", 
+                "Start order: ox_lib → Newb_Bridge → jim_g_trading_cards → phone resource → this app." 
+            ]
+        }
+    },
+    "jtc_codem_phone_app": {
+        "versions": {
+            "1.0.1": [ 
+                "Replaced community_bridge with Newb_Bridge for player identifier and character name lookup.", 
+                "Removed all community_bridge exports, dependencies, and server.cfg ensure lines.", 
+                "Required files: fxmanifest.lua, server/player.lua.", 
+                "Start order: ox_lib → Newb_Bridge → jim_g_trading_cards → phone resource → this app." 
+            ]
+        }
+    },
+    "jtc_gksphone_app": {
+        "versions": {
+            "1.0.1": [ 
+                "Replaced community_bridge with Newb_Bridge for player identifier and character name lookup.", 
+                "Removed all community_bridge exports, dependencies, and server.cfg ensure lines.", 
+                "Required files: fxmanifest.lua, server/player.lua.", 
+                "Start order: ox_lib → Newb_Bridge → jim_g_trading_cards → phone resource → this app." 
+            ]
+        }
+    },
+    "jtc_lbphone_app": {
+        "versions": {
+            "1.0.1": [ 
+                "Replaced community_bridge with Newb_Bridge for player identifier and character name lookup.", 
+                "Removed all community_bridge exports, dependencies, and server.cfg ensure lines.", 
+                "Required files: fxmanifest.lua, server/player.lua.", 
+                "Start order: ox_lib → Newb_Bridge → jim_g_trading_cards → phone resource → this app." 
+            ]
+        }
+    },
+    "jtc_roadphone_app": {
+        "versions": {
+            "1.0.1": [ 
+                "Replaced community_bridge with Newb_Bridge for player identifier and character name lookup.", 
+                "Removed all community_bridge exports, dependencies, and server.cfg ensure lines.", 
+                "Required files: fxmanifest.lua, server/player.lua.", 
+                "Start order: ox_lib → Newb_Bridge → jim_g_trading_cards → phone resource → this app." 
+            ]
+        }
+    },
+    "jtc_yseries_phone_app": {
+        "versions": {
+            "1.0.1": [ 
+                "Replaced community_bridge with Newb_Bridge for player identifier and character name lookup.", 
+                "Removed all community_bridge exports, dependencies, and server.cfg ensure lines.", 
+                "Required files: fxmanifest.lua, server/player.lua.", 
+                "Start order: ox_lib → Newb_Bridge → jim_g_trading_cards → phone resource → this app." 
             ]
         }
     }
