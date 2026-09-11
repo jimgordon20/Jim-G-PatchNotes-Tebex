@@ -289,6 +289,19 @@
                 "Note: Rename is 1=32 characters. Graded `grading_case` slabs cannot be player-renamed; their inventory name stays auto from `Config.CVGBrandText` + card name + grade.",
                 "Fix: Inventories that honour `metadata.label` as the item title (ox-style) still show the renamed binder/deck/CVG name there. Inventories that keep the item-definition title (one_inventory) now show that custom name at the top of the hover tooltip (`Name`).",
                 "Required update files: `fxmanifest.lua`, `client/main.lua`, `server/main.lua`, `server/main2.lua`, `server/webhooks.lua`, `ui/h/index.html`, `ui/j/main.js`, `ui/c/base.css`, `ui/c/cards.css`, `ui/j/booster.js`, `ui/j/cards.js`, `locales/English.json`."
+            ],
+            "1.3.0": [
+                "New: Handheld 3D props when you use cards, booster packs, booster boxes, collector books, deck boxes, the CVG binder, and grading slabs. Other players can see them in your hand.",
+                "New: `jim_g_trading_cards_props` v2 pack — unique models per brand/item (`jim_g_tc_card_*`, `jim_g_tc_c_b_*` books, `jim_g_tc_d_b_*` decks, `jim_g_tc_c_b_b_*` boxes, `jim_g_tc_b_p_*` packs, `jim_g_tc_cvg_binder`, `jim_g_tc_cvg_c`).",
+                "New: `configs_settings/configprops.lua` — `Config.DefaultProps` (model, bone, pos, rot, anim), `Config.PropItemNameOverride` (books/decks/boxes/packs/binder/slab), and `Config.CardPropItemNameOverride` (one card prop per brand).",
+                "New: Hand attach uses bone `57005` (right hand). Offsets are lined up in-game; you can retune pos/rot in `configprops.lua` without code changes.",
+                "Change: Card / pack / grading use the phone hold anim; books / decks / boxes / CVG binder use the clipboard hold anim.",
+                "Change: Prop textures rebuilt for FiveM — 1024x1024 DXT5 with mipmaps. Same layout as before (books stay in the 1024x764 slot). Cuts stream size a lot and clears the old oversized-texture warnings.",
+                "Change: Book cover art keeps the original spine and solid black padding so the 3D book no longer shows missing colour on the spine.",
+                "Fix: Opening or closing a handheld prop no longer slides the ped a couple of feet. Props spawn off the player with collision off, stay networked, and use an upper-body hold anim.",
+                "Fix: `jim_g_trading_cards_props` fxmanifest now requests the correct `.ytyp` files so books, packs, boxes, and the vending machine actually stream.",
+                "WARNING: Replace `jim_g_trading_cards_props` with this v2 pack and start it BEFORE `jim_g_trading_cards`. Old props / wrong ytyp = missing handheld models and TC machine issues.",
+                "Required update files: `fxmanifest.lua`, `client/main.lua`, `configs_settings/configprops.lua`, and replace the whole `jim_g_trading_cards_props` resource."
             ]
         }
     },
