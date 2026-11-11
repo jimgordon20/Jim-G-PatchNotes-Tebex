@@ -358,12 +358,32 @@
                 "Fix: Changing an item's `dailyStock` amount in config is applied correctly (raising the cap refills to the new amount).",
                 "Note: No config replace needed. Keep your `configshop.lua`. Timer hours stay yours — change `dailyStockRestockHours` anytime if you want a different window.",
                 "Required update files: `fxmanifest.lua`, Fully replace `server/main folder."
+            ],
+            "1.3.4": [
+                "New brands: Lumenora (120 cards) and Astralis (120 cards).",
+                "New items per brand: pack, mythic pack, legendary pack, booster box, mythic booster box, legendary booster box, book, and deck box.",
+                "New: `hideRarityBadge = true` on every Lumenora and Astralis card. Rarity still works for packs, shop, and pricing — only the rarity pill is hidden. Leave the line off (or false) on any other card and the badge shows as normal.",
+                "Fix: TC Machine DUI — the first time someone used the machine they only got a blank / attract screen and had to ESC and open it again before the shop showed. The screen now waits until the page is actually listening, then sends the shop. One retry only if that ready signal never arrives, so a normal reopen does not wipe a basket.",
+                "TC Machine fix files: replace the FULL `ui/` folder, FULL `client/main/`, and FULL `server/main/`. Those three are what stop the first-open blank screen. Do not patch single files for this one.",
+                "Props: you do not add model numbers. If an item is not listed in `configprops.lua`, it uses the default prop. Replace `configs_settings/configprops.lua` if yours is still stock so the new brand props are already mapped. Keep your own file and the new items fall back to the default prop. YOU_BRAND comment lines stay as they are.",
+                "WARNING: Replace the whole `jim_g_trading_cards_props` resource and start it BEFORE `jim_g_trading_cards`.",
+                "Inventory: add the new Lumenora and Astralis blocks from `install/` (ox, qb, or one — packs, boxes, book, deck, and all cards). Item names must match the configs.",
+                "Config merge — `configs_settings/config.lua`: add both brands to `Config.CardBacks`, `Config.Binders` (Lumenora `Plum_Rose`, Astralis `Midnight_Purple`), and `Config.DeckBoxes` (`forcestatsonlycards = true`).",
+                "Config merge — `configs_settings/configcards.lua`: paste both brand blocks (or replace the file if you have not added your own cards). Header comment at the top lists the brands and the 120 count.",
+                "Config merge — `configs_settings/configshop.lua`: shop rows, sell prices, and series categories for both brands.",
+                "Config merge — `configs_settings/configbooster.lua`: booster box links and the 3 pack definitions per brand (normal / mythic / legendary).",
+                "Config — `configs_settings/configprops.lua`: replace the stock file, or leave yours alone. Do not hand-add prop model lines. Unlisted items use the default prop.",
+                "Fix: Comic books in the Card Buyer and Card Grader were drawn as trading cards, so the name was painted on top of the cover. Loose comics now show the cover only, the same as the comic sell and grade shops. Graded comics show the BVG slab. Trading cards are unchanged.",
+                "Note: This only matters if `jim_g_comicbooks` is set to use the trading card shops. The slab picture is loaded from that resource, so it must be started. The matching comicbooks update is required for the graded slab picture — those notes are separate.",
+                "Locales: no new brand lines. Brand names live in the configs, not in the locale files. Replace the full `locales/` folder only if you want the latest locale files — you do not add Lumenora / Astralis inside the json.",
+                "If you run `jim_g_trading_cards_game` or `jim_g_collector`, update those too so the hidden rarity badge is honoured there as well.",
+                "Required update files: `fxmanifest.lua`, FULL `ui/`, FULL `client/main/`, FULL `server/main/`, the config merges above (or replace those config files if yours are still stock), inventory lists in `install/`, replace whole `jim_g_trading_cards_props`."
             ]
         }
     },
     "jim_g_trading_cards_game": {
         "versions": {
-            "0.1.2": [
+            "0.1.0": [
                 "Expanded spell and trap effects — new spells (Fracture, Shatter, Cascade, Fortify, Wither, Vitalize, Emberbolt) and traps (Retaliate, Ambush, Bulwark, Siphon, Hexbolt) in `config_spell_trap.lua`, ready to pair with game-brand spell/trap cards.",
                 "Spell and trap face (up/down) is set by the card (`activateFaceUp`) — players no longer pick face when setting a spell or trap.",
                 "Traps must be armed before they can fire, so they are clearer and less confusing mid-match.",
@@ -391,6 +411,37 @@
                 "New: Optional play mats as inventory items — set `PlayMatsAsItem = true` in `configplaymats.lua`. The player starting the match (AI or PvP) only sees mats they own. Item name is theme id + `_mats` (example: `red_blue_fusion_mats`). Labels stay the same in the game UI. Opponent does not need the item. Leave false to keep every mat in the picker.",
                 "Note: Copy-ready play mat items are in `install/example_ox_item.txt` and `install/example_qb_item.txt`. The game does not take the item away when you pick a mat.",
                 "Required update files: `fxmanifest.lua`, entire `client/main` folder, entire `server/main` folder, entire `ui` folder, entire `locales` folder, entire `shared` folder, `configs_settings/configplaymats.lua`, `install/example_ox_item.txt`, `install/example_qb_item.txt`."
+            ],
+            "1.0.2": [
+                "New: Official-table deck boxes — when a match is on `jim_g_trading_card_game_table_1`, each seat’s deck box prop sits on the wood (brand model from `Config.PropItemNameOverride` / `Config.DeckBoxes`). Custom / non-official tables stay fullscreen UI with no world deck boxes.",
+                "How it works: deck-box attach offsets come from `/attachtoprop` local coords on the official table (same attach flags as the prop placer). Seats are opposite sides; boxes update when the match syncs.",
+                "Fix: Multi-table deck boxes — each table is keyed by `locationId`, so starting or ending a match at one table no longer clears boxes on another table.",
+                "Fix: Nearby players (bystanders) also see the deck boxes on that table. Match end / cleanup clears boxes for that location only.",
+                "Fix: Brand deck boxes use the correct prop model (no more default pivot float when a brand override exists).",
+                "Change: `GameConfig.TablePresence` can be a plain `true` / `false` (legacy `{ Enabled = true }` still works). Official table only: walk to seat + look-down cam + board on table + deck boxes.",
+                "Change: Spectating / watch-match sync is disabled on the client (spectator payloads ignored) so players cannot enter watch mode from leftover watch UI.",
+                "Required update files: `fxmanifest.lua`, entire `client/main` folder (especially `table_presence.lua` + `main.lua`), entire `server/main` folder (especially `match.lua`), `configs_settings/config.lua`."
+            ],
+            "1.0.3": [
+                "New: Fusion summoning — recipes live only in `configs_settings/config_fusion.lua`. Trading cards stay collectibles. This does not change `jim_g_trading_cards`.",
+                "How it works: play the material monsters onto the battle field. When a recipe is complete, a Fusion / Skip prompt appears. Fuse sends the materials to the dead pile and puts the result monster on the field. Skip leaves the cards in play so you can fuse on a later turn.",
+                "Only monster cards with stats can be materials or results. Spells, traps, and no-stat cards cannot fuse.",
+                "Recipes are grouped by brand. The game only checks brands on your field monsters, then that brand's recipe list.",
+                "Change: `FusionConfig.DefaultResultSource` — `spawn` (default) creates the result on the field. The result card does not need to be in the 30-card deck. `hand` means the result must be in the deck and in your hand when you fuse; fusion takes it from hand onto the field. A recipe can set its own `resultSource = 'hand'` when it should differ from the default.",
+                "Change: `FusionConfig.MaxFusionsPerTurn` (default 1). `FusionConfig.NoAttackOnSummon` (default true) stops a fused monster attacking the turn it is summoned. Set `FusionConfig.Enabled = false` to turn fusion off.",
+                "Recipes can use 2 or 3+ materials. The pattern is lower rarity materials into a higher rarity result.",
+                "Starter recipes are included for `jg_warlords`, `jg_shin_genesis`, `jg_void_ether`, `jg_sands_of_eternity`, `lumenora`, and `astralis`. `ammunation_elite` is left empty so you can add your own.",
+                "New: Fusion animation — materials spiral into a black-hole vortex, the result holds in the center, then shrinks into the battle slot. You, your opponent, and the AI all see it. The board stays locked until the animation finishes.",
+                "New: Fusion sounds — `ui/s/fusion_start.wav` when the fusion starts and `ui/s/fusion_end.wav` when the result is revealed.",
+                "New: AI can fusion summon when the materials are on its field. It waits through the full animation before it continues the turn.",
+                "New: Clans / teams in the rank hub (Clans tab). Players can search clans, view members, and request to join. The leader can accept or deny. Leader and officers can kick, promote, and demote. The leader can transfer leadership or disband. Members can leave.",
+                "Change: Clan create cost is in `RankConfig.Clans.CreateRequirements`. Money and rank points can each be on or off. When both are on, both are required (default: 100 rank points and $1000 cash).",
+                "Change: Clan size, name/tag length, pending join requests, and the leave / kick / disband cooldown are in `RankConfig.Clans` (default cooldown 48 hours, max 15 members).",
+                "Note: Clan ladder points come from ranked PvP only. AI matches do not add clan points.",
+                "Note: Clan tables (`jim_g_tcg_clans`, members, requests, cooldowns) are created when the resource starts. No manual SQL.",
+                "Note: Clan and fusion UI text is in `locales/English.json`. Other language files fall back to English for those lines until they are translated.",
+                "Note: `jim_g_trading_cards` does not need an update for this version.",
+                "Required update files: `fxmanifest.lua`, `configs_settings/config_fusion.lua`, `configs_settings/config_rank.lua`, entire `server/main` folder, entire `ui` folder (including `ui/s/fusion_start.wav` and `ui/s/fusion_end.wav`), `locales/English.json`."
             ]
         }
     },
@@ -405,6 +456,29 @@
                 "Required files: fxmanifest.lua, client/main/main.lua, server/main/main.lua, server/main/trader.lua, server/main/meta.lua.",
                 "Configs, UI, locales, and webhooks were not changed.",
                 "Start order: ox_lib → Newb_Bridge → jim_g_trading_cards → jim_g_collector."
+            ],
+            "1.0.4": [
+                "Fix: A graded comic in the collection was drawing the label on top of the case, so the colored plate could stick out past the frame. The label and the grade text now sit behind the BVG face image, the same as the comic slab. The book still shows in the window.",
+                "Note: The face picture comes from `jim_g_comicbooks` 1.1.0 (`case_face` / `jim_g_comicbooks_grading_pack_face.webp` on the image host). Update comicbooks as well or the tile stays on the old look. Trading cards are not part of this.",
+                "No config change. No new items. No locales.",
+                "Required update files: entire `ui` folder (`ui/j/collector.js`, `ui/j/main.js`, `ui/c/collector.css`). `client/main` and `server/main` were not changed."
+            ]
+        }
+    },
+    "jim_g_comicbooks": {
+        "versions": {
+            "1.1.0": [
+                "Fix: BVG label sits behind a new front frame, `jim_g_comicbooks_grading_pack_face.webp`. The label window is cut out, so any extra label edge is hidden by the plastic. Upload that file to the same image host as the other case art. The colored grade plates stay as they are.",
+                "Config merge — `configs_settings/config.lua`: under `Config.GradingCase` add `case_face = 'jim_g_comicbooks_grading_pack_face.webp'`. Under `Config.GrabBags` the new default is `minCondition = 35` (a bag will not give a book below that). Do not replace the whole file if you have your own books, prices, or language.",
+                "Config merge — `configs_settings/config_shops.lua` only if you want the new defaults: `baseSellPercent = 0.55`, grading `feePercent = 0.30`, `minFee = 100`, fee cap `price = 1500`, Empty BVG Case `price = 250`. Leave your file alone if you already set your own prices.",
+                "Fix: Opening a book slides the closed cover to the right, then it is ready to turn. Closing plays the close sound only. Wear marks stay hidden until the bag or grab-bag plastic is coming off.",
+                "Fix: Putting the same label skin on a slab that already has it does not use the skin up.",
+                "Sounds: open, close, and page turn are wav (`book-opening.wav`, `book-closing.wav`, `book_page_turn.wav`) in `ui/s`. They ship with the `ui/` replace.",
+                "Locales: add `\"bvg.skin_same\": \"That slab already has this label skin\"` to `locales/English.json`. If you use another language file, add the same key there in your own words. Do not replace the whole locales folder if you have your own translations.",
+                "Trading card shops: if `Config.UseTradingCardsShops = true`, also update `jim_g_trading_cards` to 1.3.5. Loose comics in that buyer and grader show the cover. Graded comics show the BVG slab. This resource sends that slab art. Trading cards themselves are not changed.",
+                "If you run `jim_g_collector`, update it too so a graded comic in the collection uses the new face image.",
+                "Note: Binder and album storage updates itself the first time the resource starts. It keeps a backup table. Do not delete that table.",
+                "Required update files: `fxmanifest.lua`, FULL `ui/`, FULL `client/main/`, FULL `server/main/`, the config merges above, the one locale line, and the new face image on the image host."
             ]
         }
     },
